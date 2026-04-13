@@ -51,6 +51,9 @@ func SearchConstantInProject(projectDir, constant, excludeFile string) (bool, er
 		if info.IsDir() || !strings.HasSuffix(path, ".go") {
 			return nil
 		}
+		if filepath.Base(path) == excludeFile {
+			return nil
+		}
 
 		file, err := os.Open(path)
 		if err != nil {
